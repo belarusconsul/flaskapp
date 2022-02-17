@@ -1,0 +1,6 @@
+# Set the default behavior
+* text=auto
+
+# Explicitly declare files to always be normalized
+*.py text diff=python
+*.md text diff=markdown
