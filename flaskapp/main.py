@@ -64,9 +64,8 @@ Package structure:
 """
 
 import random
-from io import StringIO
 
-from flask import Flask
+from flask import Flask, render_template
 
 from . import flask_sql
 
@@ -86,7 +85,7 @@ def index():
     else:
         message += "ERROR"
     flask_sql.store_sql_data(message)
-    return f"<h1>{message}</h1><a href='/history'>History of health checks</a>"
+    return render_template("index.html", message=message)
 
 
 @app.route('/history')
@@ -94,15 +93,5 @@ def history():
     """Return information from sqlite3 database about previous health checks"""
     data_dict = flask_sql.retrieve_sql_data()
     if data_dict and data_dict is not None:
-        string_obj = StringIO()
-        string_obj.write("<h1>History of health checks</h1>"
-                         "<table>"
-                         "<tr><th>#</th><th>Date</th><th>Message</th></tr>")
-        for data in data_dict:
-            string_obj.write(f"<tr><td>{data}</td>"
-                             f"<td>{data_dict[data][0]}</td>"
-                             f"<td>{data_dict[data][1]}</td></tr>")
-        string_obj.write("</table><br><a href='/'>Back</a>")
-        return string_obj.getvalue()
-    return "<h1>No health check information in the database</h1>"\
-           "<a href='/'>Back</a>"
+        return render_template("history_success.html", data_dict=data_dict)
+    return render_template("history_failure.html")

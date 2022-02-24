@@ -5,12 +5,12 @@
 
 
 ### Author: Nickolai Lychagin, Nickolai_Lychagin@epam.com
-### Version 0.1, 17.02.2022
+### Version 0.2, 24.02.2022
 
 > This program:
 >
-> - returns "Health check done. Status: OK" on http://localhost:80
-
+> - returns random health check information on http://localhost:80
+> - returns historic health check information
 ---
 ## USAGE
 
@@ -25,10 +25,14 @@
 ## FOLDER STRUCTURE
 
 ### flaskapp - package for Flask app:
+#### files - folder for various project files
+- sql.db - sqlite3 database to hold health check information
 #### \_\_init\_\_.py - package initialization file
 #### \_\_main\_\_.py - allow program to be run by package name
+#### flask_sql.py - SQL functionality (create table, store and retrieve data)
 #### main.py - main program logic
 
+### .gitattributes - hold information about crlf options
 ### .gitignore - ignore files for GIT
 ### flaskapp.py - run program from command line
 ### README.md - information about this program

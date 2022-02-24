@@ -1,0 +1,28 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    History of health checks
+{% endblock title %}
+
+{% block content %}
+    <h1>History of health checks</h1>
+    <table class="table table-sm table-bordered table-hover">
+        <thead>
+           <tr>
+                <th>#</th>
+                <th>Date</th>
+                <th>Message</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for data in data_dict %}
+                <tr>
+                    <td>{{ data }}</td>
+                    <td>{{ data_dict[data][0] }}</td>
+                    <td>{{ data_dict[data][1] }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <a href='/'>Back</a>
+{% endblock content %}
